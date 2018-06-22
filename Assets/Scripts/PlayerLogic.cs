@@ -81,27 +81,34 @@ public class PlayerLogic : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        valor = collectableLogic.points;
-        badValor = badCollectableLogic.badPoint;
+       
+       
 
-        if (collision.gameObject.tag == "badColect")
+        if (collision.gameObject.tag == "badColect" & m_Size.x >1 )
         {
-            Debug.Log(badValor);
+            BadGrow();
+           
         }else if(collision.gameObject.tag == "goodColect")
         {
-            Debug.Log(valor);
+            Grow();
         }
       
-        Grow();
+       
         Destroy(collision.gameObject);
         
        
     }
 
     private void Grow() {
-
-         
-        transform.localScale += new Vector3(1, 1, 1);
+        valor = collectableLogic.points;
+        transform.localScale += new Vector3(valor, valor, valor);
         
+    }
+
+    private void BadGrow()  {
+        badValor = badCollectableLogic.badPoint;
+        transform.localScale += new Vector3(badValor, badValor, badValor);
+
+
     }
 }
